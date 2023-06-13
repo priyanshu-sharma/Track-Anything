@@ -601,7 +601,19 @@ with gr.Blocks() as iface:
     gr.Markdown("##  Examples - UVO Dense")
     gr.Examples(
         examples=[os.path.join(os.path.dirname(__file__), "../data_domain/evaluation/uvo_videos_dense/", test_sample) for test_sample in ["1BkmCXHttEQ.mp4","0GWr1EV6ZuY.mp4", \
-                                                                                                             "2bRXcLakTZQ.mp4","0tHJCi6G4S4.mp4"]],
+                                                                                                             "02K4QYwUR6k.mp4","03KH2wOyiVw.mp4"]],
+        fn=run_example,
+        inputs=[
+            video_input
+        ],
+        outputs=[video_input],
+        # cache_examples=True,
+    )
+    # set example
+    gr.Markdown("##  Examples - UVO Sparse")
+    gr.Examples(
+        examples=[os.path.join(os.path.dirname(__file__), "../data_domain/evaluation/uvo_videos_sparse/", test_sample) for test_sample in ["jdGFLI1LIno.mp4","6JeRGeHkpDg.mp4", \
+                                                                                                             "6JeRGeHkpDg.mp4","1Fy_RjRXbVE.mp4"]],
         fn=run_example,
         inputs=[
             video_input
