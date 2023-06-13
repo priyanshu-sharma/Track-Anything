@@ -586,7 +586,7 @@ with gr.Blocks() as iface:
         outputs = [template_frame,click_state, run_status],
     )
     # set example
-    gr.Markdown("##  Examples")
+    gr.Markdown("##  Examples - Testing")
     gr.Examples(
         examples=[os.path.join(os.path.dirname(__file__), "./test_sample/", test_sample) for test_sample in ["test-sample8.mp4","test-sample4.mp4", \
                                                                                                              "test-sample2.mp4","test-sample13.mp4"]],
@@ -596,7 +596,19 @@ with gr.Blocks() as iface:
         ],
         outputs=[video_input],
         # cache_examples=True,
-    ) 
+    )
+    # set example
+    gr.Markdown("##  Examples - UVO Dense")
+    gr.Examples(
+        examples=[os.path.join(os.path.dirname(__file__), "../data_domain/evaluation/uvo_videos_dense/", test_sample) for test_sample in ["1BkmCXHttEQ.mp4","0GWr1EV6ZuY.mp4", \
+                                                                                                             "2bRXcLakTZQ.mp4","0tHJCi6G4S4.mp4"]],
+        fn=run_example,
+        inputs=[
+            video_input
+        ],
+        outputs=[video_input],
+        # cache_examples=True,
+    )
 iface.queue(concurrency_count=1)
 iface.launch(debug=True, enable_queue=True, server_port=args.port, server_name="0.0.0.0")
 # iface.launch(debug=True, enable_queue=True)
