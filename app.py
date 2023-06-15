@@ -628,6 +628,18 @@ with gr.Blocks() as iface:
         outputs=[video_input],
         # cache_examples=True,
     )
+    # set example
+    gr.Markdown("##  Examples - MOT 15")
+    gr.Examples(
+        examples=[os.path.join(os.path.dirname(__file__), "../data_domain/evaluation/mot/", test_sample) for test_sample in ["maria.mp4","moving.mp4", \
+                                                                                                             "one_car.mp4","pedestrian.mp4"]],
+        fn=run_example,
+        inputs=[
+            video_input
+        ],
+        outputs=[video_input],
+        # cache_examples=True,
+    )
 iface.queue(concurrency_count=1)
 iface.launch(debug=True, enable_queue=True, server_port=args.port, server_name="0.0.0.0")
 # iface.launch(debug=True, enable_queue=True)
