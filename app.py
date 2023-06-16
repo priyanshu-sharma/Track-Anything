@@ -385,9 +385,12 @@ args.device = "cuda:3"
 model = TrackingAnything(SAM_checkpoint, xmem_checkpoint, e2fgvi_checkpoint,args)
 
 
-title = """<p><h1 align="center">Track-Anything</h1></p>
-    """
-description = """<p>Gradio demo for Track Anything, a flexible and interactive tool for video object tracking, segmentation, and inpainting. I To use it, simply upload your video, or click one of the examples to load them. Code: <a href="https://github.com/gaomingqi/Track-Anything">https://github.com/gaomingqi/Track-Anything</a> <a href="https://huggingface.co/spaces/watchtowerss/Track-Anything?duplicate=true"><img style="display: inline; margin-top: 0em; margin-bottom: 0em" src="https://bit.ly/3gLdBN6" alt="Duplicate Space" /></a></p>"""
+title = """<p><h1 align="center">ESAMVS</h1></p>"""
+short_discription = """<p><h2 align="center">Extending SAM Models for Video Segmentation</h2></p>"""
+adopted_by = """<p><h3 align="right">(UI Adopted from Track-Anything)</h3></p>"""
+author = """<p><h3 align="right"> - Priyanshu Sharma (862395994)</h3></p>"""
+course = """<p><h3 align="right"> - EE_243 - ADVANCED COMPUTER VISION</h3></p>"""
+description = """<p>Gradio demo for Track Anything, a flexible and interactive tool for video object tracking, segmentation, and inpainting. I To use it, simply upload your video, or click one of the examples to load them. Code: <a href="https://github.com/priyanshu-sharma/ESAMVS">https://github.com/priyanshu-sharma/ESAMVS</a> </p>"""
 
 
 with gr.Blocks() as iface:
@@ -423,6 +426,10 @@ with gr.Blocks() as iface:
         }
     )
     gr.Markdown(title)
+    gr.Markdown(short_discription)
+    gr.Markdown(adopted_by)
+    gr.Markdown(author)
+    gr.Markdown(course)
     gr.Markdown(description)
     with gr.Row():
 
@@ -614,6 +621,18 @@ with gr.Blocks() as iface:
     gr.Examples(
         examples=[os.path.join(os.path.dirname(__file__), "../data_domain/evaluation/uvo_videos_sparse/", test_sample) for test_sample in ["jdGFLI1LIno.mp4","6JeRGeHkpDg.mp4", \
                                                                                                              "6JeRGeHkpDg.mp4","1Fy_RjRXbVE.mp4"]],
+        fn=run_example,
+        inputs=[
+            video_input
+        ],
+        outputs=[video_input],
+        # cache_examples=True,
+    )
+    # set example
+    gr.Markdown("##  Examples - MOT 15")
+    gr.Examples(
+        examples=[os.path.join(os.path.dirname(__file__), "../data_domain/evaluation/mot/", test_sample) for test_sample in ["maria.mp4","moving.mp4", \
+                                                                                                             "one_car.mp4","pedestrian.mp4"]],
         fn=run_example,
         inputs=[
             video_input
